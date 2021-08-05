@@ -31,6 +31,7 @@ public class RCCarLoversPortalTest {
 		// Feedback test data
 		fb1 = new Feedback("John",98765432,"I do not like x");
 		fb2 = new Feedback("Ken",87654321,"I do not like y");
+		fb3 = new Feedback("",76543210,"");
 		feedbackList = new ArrayList<Feedback>();
 		
 		dateNow = new Date();
