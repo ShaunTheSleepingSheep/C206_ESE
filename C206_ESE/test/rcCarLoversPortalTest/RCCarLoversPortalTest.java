@@ -166,29 +166,6 @@ public class RCCarLoversPortalTest {
 		assertEquals("Check if all feedback in the feedback list is displayed", expected, actual);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		// Feedback test data
-		fb1 = null;
-		fb2 = null;
-		fb3 = null;
-		feedbackList = null;
-
-		dateNow = null;
-
-		after2Days23Hr59Min = null;
-		after3Days = null;
-
-		add2Days23Hr59Min = null;
-		add3Days = null;
-		
-		//Car test data
-		rc1 = null;
-		rc2 = null;
-		rc3 = null;
-		RCList = null;
-	}
-
 	// YuYang
 	// ==============================<RC Cars>==============================//
 	@Test
@@ -304,5 +281,27 @@ public class RCCarLoversPortalTest {
 
 		assertEquals("Check if all Cars in the RCCar list is displayed", expected, actual);
 	}
+	
+	@After
+	public void tearDown() throws Exception {
+		// Feedback test data
+		fb1 = null;
+		fb2 = null;
+		fb3 = null;
+		feedbackList = null;
 
+		dateNow = null;
+
+		after2Days23Hr59Min = null;
+		after3Days = null;
+
+		add2Days23Hr59Min = null;
+		add3Days = null;
+		
+		//Car test data
+		rc1 = null;
+		rc2 = null;
+		rc3 = null;
+		RCList = null;
+	}
 }

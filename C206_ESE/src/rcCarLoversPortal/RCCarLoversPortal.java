@@ -24,7 +24,14 @@ public class RCCarLoversPortal {
 	}
 	
 	public static boolean removeFeedback(ArrayList<Feedback> feedbackList, Feedback fb, Date dateNow) {
-		return false;
+	
+		if (feedbackList.remove(fb)) {
+			return true;
+		}
+		
+		else {
+			return false;
+		}
 	}
 	
 	public static String viewFeedback(Feedback fb) {
