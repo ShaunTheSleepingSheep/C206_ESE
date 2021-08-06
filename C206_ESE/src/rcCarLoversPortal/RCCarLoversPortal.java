@@ -29,5 +29,39 @@ public class RCCarLoversPortal {
 		
 		return feedbackListOutput;
 	}
-	//
+	//YuYang
+    // ==============================<RC Cars>==============================//
+    public static String CarsMenu(ArrayList<Feedback> RCList) {
+        String CarListOutput = "";
+
+ 
+
+        return CarListOutput;
+    }
+
+ 
+
+    public static boolean addCar(ArrayList<RCCar> RCList, RCCar rc) {
+        return true;
+    }
+
+ 
+
+    public static boolean removeCar(ArrayList<RCCar> RCList, RCCar rc) {
+        return false;
+    }
+
+ 
+
+    public static String viewCar(RCCar rc) {
+        String ControlCar = "";
+        return ControlCar;
+    }
+
+ 
+
+    public static String CarListingMenu(ArrayList<RCCar> RCList) {
+        String CarListOutput = "";
+        return CarListOutput;
+    }
 }
