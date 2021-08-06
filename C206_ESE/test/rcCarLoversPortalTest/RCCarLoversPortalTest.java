@@ -211,9 +211,6 @@ public class RCCarLoversPortalTest {
 
 	@Test
 	public void removeCarTest() {
-		RCList.add(rc1);
-		RCList.add(rc2);
-
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
