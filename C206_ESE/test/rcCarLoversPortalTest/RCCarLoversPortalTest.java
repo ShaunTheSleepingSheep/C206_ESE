@@ -120,7 +120,7 @@ public class RCCarLoversPortalTest {
 		String expected = "";
 		String actual = RCCarLoversPortal.viewFeedback(feedbackList.get(0));
 
-		expected += "AUTHOR\n";
+		expected += "\nAUTHOR\n";
 		expected += "------\n";
 		expected += fb1.getName() + "\n\n";
 		expected += "PHONE NUMBER\n";
@@ -147,8 +147,12 @@ public class RCCarLoversPortalTest {
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", feedbackList);
 
-		// check if list is empty, a relevant messsage will be displayed
-		String expected = "Nothing to display";
+		// check if list is empty, a relevant message will be displayed
+		String expected = "\nNothing to display";
+		expected += "\n\n1. Add feedback";
+		expected += "\n2. Remove feedback";
+		expected += "\n3. View feedback\n";
+		
 		String actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
 		assertEquals("Check if feedback list is empty, a relevant message will be displayed", expected, actual);
@@ -157,10 +161,14 @@ public class RCCarLoversPortalTest {
 		feedbackList.add(fb1);
 		feedbackList.add(fb2);
 
-		expected += String.format("%-5s %-10s %s", "ID", "PHONE NO.", "NAME");
-		expected += String.format("\n%-5s %-10s %s", "--", "---------", "----");
-		expected += String.format("\n%-5d %-10d %s", 1, fb1.getPhoneNo(), fb1.getName());
-		expected += String.format("\n%-5d %-10d %s", 2, fb2.getPhoneNo(), fb2.getName());
+		expected = String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
+		expected += String.format("\n%-5s %s", "--", "---------------");
+		expected += String.format("\n%-5d %s", 1, fb1.getName());
+		expected += String.format("\n%-5d %s", 2, fb2.getName());
+		expected += "\n\n1. Add feedback";
+		expected += "\n2. Remove feedback";
+		expected += "\n3. View feedback\n";
+		
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
 		assertEquals("Check if all feedback in the feedback list is displayed", expected, actual);

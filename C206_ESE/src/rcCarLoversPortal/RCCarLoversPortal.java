@@ -1,15 +1,124 @@
 package rcCarLoversPortal;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class RCCarLoversPortal {
 
-	private ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
+	private static ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
+	private static ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		testData();
+		RCCarLoversPortal portal = new RCCarLoversPortal();
+		portal.mainMenu();
 	}
+	
+	private void mainMenu() {
+		// TODO: Complete main menu
+		int option = 0;
+		
+		while (option != 5) {
+			System.out.println("1. RC Cars");
+			System.out.println("2. Buyers");
+			System.out.println("3. Appointments");
+			System.out.println("4. Feedback");
+			System.out.println("5. Quit");
+			
+			option = Helper.readInt("Enter an option > ");
+			
+			if (option == 4) {
+				System.out.println(RCCarLoversPortal.feedbackMenu(feedbackList));
+				int optionFeedback = Helper.readInt("Enter an option > ");
+				
+				switch (optionFeedback) {
+				
+				case 1:
+					int buyerID = Helper.readInt("Buyer ID > ");
+					String feedback = Helper.readString("Feedback > ");
+					
+					int buyerPosInList = buyerID - 1;
+					
+					if (buyerList.size() < buyerID) {
+						System.out.println("\nBuyer does not exist");
+					}
+					
+					else {
+						String buyerName = buyerList.get(buyerPosInList).getName();
+						int buyerPhoneNo = buyerList.get(buyerPosInList).getPhoneNo();
+						
+						Feedback feedbackToAdd = new Feedback(buyerName, buyerPhoneNo, feedback);
+						
+						if (RCCarLoversPortal.addFeedback(feedbackList, feedbackToAdd)) {
+							System.out.println("\nFeedback added\n");
+						}
+						
+						else if (feedbackToAdd.getDescription() == "") {
+							System.out.println("\nFeedback body missing\n");
+						}
+					}
+					
+					break;
+					
+				case 2:
+					Date dateNow = new Date();
+					Feedback feedbackToDelete = null; 
+					
+					int feedbackID = Helper.readInt("Feedback ID > ");
+					int feedbackPosInList = feedbackID - 1;
+					
+					if (feedbackList.size() < feedbackID) {
+						System.out.println("\nFeedback form does not exist\n");
+					}
+					
+					else {
+						feedbackToDelete = feedbackList.get(feedbackPosInList);
+						
+						if (RCCarLoversPortal.removeFeedback(feedbackList, feedbackToDelete, dateNow)) {
+							System.out.println("\nFeedback deleted\n");
+						}
+						
+						else if (feedbackList.size() < feedbackPosInList) {
+							System.out.println("\nFeedback does not exist\n");
+						}
+						
+						else {
+							System.out.println("\nThe feedback form is not 3 days old yet\n");
+						}
+					}
+					
+					break;
+					
+				case 3:
+					Feedback feedbackToView = null;
+					
+					feedbackID = Helper.readInt("Feedback ID > ");
+					feedbackPosInList = feedbackID - 1;
+					
+					if (feedbackList.size() < feedbackID) {
+						System.out.println("\nFeedback does not exist\n");
+					}
+					
+					else {
+						feedbackToView = feedbackList.get(feedbackPosInList);
+						
+						System.out.println(RCCarLoversPortal.viewFeedback(feedbackToView));
+					}
+					
+					break;
+				}
+			}
+		}
+	}
+	
+	//==============================<Temp Test Data>==============================//
+	// TODO: Delete when Aqil completes his modules.
+	private static void testData() {
+		Buyer b1 = new Buyer("Johnny Guitar", 98765432);
+		buyerList.add(b1);
+	}
+
 	//==============================<Feedback>==============================//
 	public static boolean addFeedback(ArrayList<Feedback> feedbackList, Feedback fb) {
 		
@@ -59,7 +168,7 @@ public class RCCarLoversPortal {
 		String feedback = "";
 		
 		if (fb != null) {
-			feedback += "AUTHOR\n";
+			feedback += "\nAUTHOR\n";
 			feedback += "------\n";
 			feedback += fb.getName() + "\n\n";
 			feedback += "PHONE NUMBER\n";
@@ -75,6 +184,30 @@ public class RCCarLoversPortal {
 	
 	public static String feedbackMenu(ArrayList<Feedback> feedbackList) {
 		String feedbackListOutput = "";
+		int numberOfIterations = 0;
+		
+		if (!feedbackList.isEmpty()) {
+			
+			for (Feedback i : feedbackList) {
+				
+				if (numberOfIterations < 1) {
+					feedbackListOutput += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
+					feedbackListOutput += String.format("\n%-5s %s", "--", "---------------");
+					
+					numberOfIterations++;
+				}
+				
+				feedbackListOutput += String.format("\n%-5d %s", numberOfIterations++, i.getName());
+			}
+		}
+		
+		else {
+			feedbackListOutput = "\nNothing to display";
+		}
+		
+		feedbackListOutput += "\n\n1. Add feedback";
+		feedbackListOutput += "\n2. Remove feedback";
+		feedbackListOutput += "\n3. View feedback\n";
 		
 		return feedbackListOutput;
 	}
