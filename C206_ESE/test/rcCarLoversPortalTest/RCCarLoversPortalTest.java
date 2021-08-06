@@ -181,6 +181,12 @@ public class RCCarLoversPortalTest {
 
 		add2Days23Hr59Min = null;
 		add3Days = null;
+		
+		//Car test data
+		rc1 = null;
+		rc2 = null;
+		rc3 = null;
+		RCList = null;
 	}
 
 	// YuYang
@@ -299,12 +305,4 @@ public class RCCarLoversPortalTest {
 		assertEquals("Check if all Cars in the RCCar list is displayed", expected, actual);
 	}
 
-	@After
-	public void removeCartest() throws Exception {
-		// Car test remove data
-		rc1 = null;
-		rc2 = null;
-		rc3 = null;
-		RCList = null;
-	}
 }
