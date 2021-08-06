@@ -5,13 +5,23 @@ import java.util.Date;
 
 public class RCCarLoversPortal {
 
+	private ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello world!");
 	}
 	//==============================<Feedback>==============================//
 	public static boolean addFeedback(ArrayList<Feedback> feedbackList, Feedback fb) {
-		return true;
+		
+		if (fb.getName() != "" || fb.getDescription() != "") {
+			feedbackList.add(fb);
+			
+			return true;
+		}
+		
+		else {
+			return false;
+		}
 	}
 	
 	public static boolean removeFeedback(ArrayList<Feedback> feedbackList, Feedback fb, Date dateNow) {
