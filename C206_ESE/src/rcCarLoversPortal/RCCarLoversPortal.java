@@ -6,6 +6,7 @@ import java.util.Date;
 public class RCCarLoversPortal {
 
 	private ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	}
@@ -56,6 +57,18 @@ public class RCCarLoversPortal {
 	
 	public static String viewFeedback(Feedback fb) {
 		String feedback = "";
+		
+		if (fb != null) {
+			feedback += "AUTHOR\n";
+			feedback += "------\n";
+			feedback += fb.getName() + "\n\n";
+			feedback += "PHONE NUMBER\n";
+			feedback += "------------\n";
+			feedback += fb.getPhoneNo() + "\n\n";
+			feedback += "FEEDBACK\n";
+			feedback += "--------\n";
+			feedback += fb.getDescription() + "\n";
+		}
 		
 		return feedback;
 	}
