@@ -6,7 +6,6 @@ import java.util.Date;
 public class RCCarLoversPortal {
 
 	private ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	}
@@ -41,12 +40,10 @@ public class RCCarLoversPortal {
 	}
 	//YuYang
     // ==============================<RC Cars>==============================//
-    public static String CarsMenu(ArrayList<Feedback> RCList) {
-        String CarListOutput = "";
-        return CarListOutput;
+    public static String CarInfo(RCCar rc) {
+        String CarOutput = "";
+        return CarOutput;
     }
-
- 
 
     public static boolean addCar(ArrayList<RCCar> RCList, RCCar rc) {
         return true;
