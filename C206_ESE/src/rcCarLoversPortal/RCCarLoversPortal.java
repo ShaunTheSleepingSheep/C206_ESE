@@ -24,9 +24,29 @@ public class RCCarLoversPortal {
 	}
 	
 	public static boolean removeFeedback(ArrayList<Feedback> feedbackList, Feedback fb, Date dateNow) {
-	
-		if (feedbackList.remove(fb)) {
-			return true;
+		boolean isInsideList = false;
+		
+		for (Feedback i : feedbackList) {
+			
+			if (i.equals(fb)) {
+				isInsideList = true;
+				break;
+			}
+		}
+		
+		if (isInsideList) {
+			long daysPassed = dateNow.getTime() - fb.getDateCreated().getTime();
+			int daysPassed3 = 259200000;
+			
+			if (daysPassed >= daysPassed3) {
+				feedbackList.remove(fb);
+				
+				return true;
+			}
+			
+			else {
+				return false;
+			}
 		}
 		
 		else {

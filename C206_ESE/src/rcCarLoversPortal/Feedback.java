@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class Feedback extends Buyer {
 
-	private Date dateNow;
+	private Date dateCreated;
 	private String description;
 
 	public Feedback(String name, int phoneNo, String description) {
 		super(name, phoneNo);
-		dateNow = new Date();
+		dateCreated = new Date();
 		this.description = description;
 	}
 
-	public Date getDateNow() {
-		return dateNow;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
 	public String getDescription() {
