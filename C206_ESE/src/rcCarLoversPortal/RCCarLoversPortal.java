@@ -214,7 +214,7 @@ public class RCCarLoversPortal {
 	//YuYang
     // ==============================<RC Cars>==============================//
     public static String CarInfo(RCCar rc) {
-        String CarOutput = "";
+        String CarOutput = String.format("Asset ID\n------\n%-10d\n\nAsset Name\n------------\n%-10s\n\nSpeed\n--------\n%-10d\nDrive Train\n--------\n%-10s\nBody\n--------\n%-10s\n", rc.getAssetID(),rc.getAssetName(),rc.getSpeed(),rc.getDriveTrain(),rc.getBody());
         return CarOutput;
     }
 
@@ -232,7 +232,13 @@ public class RCCarLoversPortal {
     }
 
     public static String CarListingMenu(ArrayList<RCCar> RCList) {
-        String CarListOutput = "";
+    	String CarListOutput = String.format("%-5s %-20s %-5d %-20s %-20s", "ASSET ID", "ASSET NAME", "SPEED", "DRIVE TRAIN", "BODY");
+        CarListOutput += String.format("\n%-5s %-20s %-5s %-20s %-20s", "--", "---------", "----");
+    	for(int i = 0; i < RCList.size(); i++)
+    	{
+            CarListOutput += String.format("\n%-5s %-20s %-5d %-20s %-20s", 1, RCList.get(i).getAssetID(), RCList.get(i).getAssetName(), RCList.get(i).getSpeed(),RCList.get(i).getDriveTrain(),RCList.get(i).getBody());
+    	}
+        
         return CarListOutput;
     }
 }
