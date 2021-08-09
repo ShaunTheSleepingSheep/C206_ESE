@@ -121,9 +121,9 @@ public class RCCarLoversPortal {
 						System.out.println("\nInvalid option\n");
 						
 						break;
+					}
 				}
 			}
-		}
 		}
 	}
 	
