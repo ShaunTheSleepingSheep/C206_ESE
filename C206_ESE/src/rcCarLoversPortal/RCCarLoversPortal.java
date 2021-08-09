@@ -27,88 +27,103 @@ public class RCCarLoversPortal {
 			System.out.println("5. Quit");
 			
 			option = Helper.readInt("Enter an option > ");
-			
+		
+			// Feedback sub-menu
 			if (option == 4) {
-				System.out.println(RCCarLoversPortal.feedbackMenu(feedbackList));
-				int optionFeedback = Helper.readInt("Enter an option > ");
+				int optionFeedback = 0;
 				
-				switch (optionFeedback) {
-				
-				case 1:
-					int buyerID = Helper.readInt("Buyer ID > ");
-					String feedback = Helper.readString("Feedback > ");
+				while (optionFeedback != 4) {
+					System.out.println(RCCarLoversPortal.feedbackMenu(feedbackList));
+					optionFeedback = Helper.readInt("Enter an option > ");
 					
-					int buyerPosInList = buyerID - 1;
+					switch (optionFeedback) {
 					
-					if (buyerList.size() < buyerID) {
-						System.out.println("\nBuyer does not exist");
-					}
-					
-					else {
-						String buyerName = buyerList.get(buyerPosInList).getName();
-						int buyerPhoneNo = buyerList.get(buyerPosInList).getPhoneNo();
+					case 1:
+						int buyerID = Helper.readInt("Buyer ID > ");
+						String feedback = Helper.readString("Feedback > ");
 						
-						Feedback feedbackToAdd = new Feedback(buyerName, buyerPhoneNo, feedback);
+						int buyerPosInList = buyerID - 1;
 						
-						if (RCCarLoversPortal.addFeedback(feedbackList, feedbackToAdd)) {
-							System.out.println("\nFeedback added\n");
-						}
-						
-						else if (feedbackToAdd.getDescription() == "") {
-							System.out.println("\nFeedback body missing\n");
-						}
-					}
-					
-					break;
-					
-				case 2:
-					Date dateNow = new Date();
-					Feedback feedbackToDelete = null; 
-					
-					int feedbackID = Helper.readInt("Feedback ID > ");
-					int feedbackPosInList = feedbackID - 1;
-					
-					if (feedbackList.size() < feedbackID) {
-						System.out.println("\nFeedback form does not exist\n");
-					}
-					
-					else {
-						feedbackToDelete = feedbackList.get(feedbackPosInList);
-						
-						if (RCCarLoversPortal.removeFeedback(feedbackList, feedbackToDelete, dateNow)) {
-							System.out.println("\nFeedback deleted\n");
-						}
-						
-						else if (feedbackList.size() < feedbackPosInList) {
-							System.out.println("\nFeedback does not exist\n");
+						if (buyerList.size() < buyerID) {
+							System.out.println("\nBuyer does not exist");
 						}
 						
 						else {
-							System.out.println("\nThe feedback form is not 3 days old yet\n");
+							String buyerName = buyerList.get(buyerPosInList).getName();
+							int buyerPhoneNo = buyerList.get(buyerPosInList).getPhoneNo();
+							
+							Feedback feedbackToAdd = new Feedback(buyerName, buyerPhoneNo, feedback);
+							
+							if (RCCarLoversPortal.addFeedback(feedbackList, feedbackToAdd)) {
+								System.out.println("\nFeedback added");
+							}
+							
+							else if (feedbackToAdd.getDescription() == "") {
+								System.out.println("\nFeedback body missing");
+							}
 						}
-					}
-					
-					break;
-					
-				case 3:
-					Feedback feedbackToView = null;
-					
-					feedbackID = Helper.readInt("Feedback ID > ");
-					feedbackPosInList = feedbackID - 1;
-					
-					if (feedbackList.size() < feedbackID) {
-						System.out.println("\nFeedback does not exist\n");
-					}
-					
-					else {
-						feedbackToView = feedbackList.get(feedbackPosInList);
 						
-						System.out.println(RCCarLoversPortal.viewFeedback(feedbackToView));
-					}
+						break;
+						
+					case 2:
+						Date dateNow = new Date();
+						Feedback feedbackToDelete = null; 
+						
+						int feedbackID = Helper.readInt("Feedback ID > ");
+						int feedbackPosInList = feedbackID - 1;
+						
+						if (feedbackList.size() < feedbackID) {
+							System.out.println("\nFeedback form does not exist");
+						}
+						
+						else {
+							feedbackToDelete = feedbackList.get(feedbackPosInList);
+							
+							if (RCCarLoversPortal.removeFeedback(feedbackList, feedbackToDelete, dateNow)) {
+								System.out.println("\nFeedback deleted");
+							}
+							
+							else if (feedbackList.size() < feedbackPosInList) {
+								System.out.println("\nFeedback does not exist");
+							}
+							
+							else {
+								System.out.println("\nThe feedback form is not 3 days old yet");
+							}
+						}
+						
+						break;
+						
+					case 3:
+						Feedback feedbackToView = null;
+						
+						feedbackID = Helper.readInt("Feedback ID > ");
+						feedbackPosInList = feedbackID - 1;
+						
+						if (feedbackList.size() < feedbackID) {
+							System.out.println("\nFeedback does not exist");
+						}
+						
+						else {
+							feedbackToView = feedbackList.get(feedbackPosInList);
+							
+							System.out.println(RCCarLoversPortal.viewFeedback(feedbackToView));
+						}
+						
+						break;
+						
+					case 4:
+						System.out.println("");
+						
+						break;
 					
-					break;
+					default:
+						System.out.println("\nInvalid option\n");
+						
+						break;
 				}
 			}
+		}
 		}
 	}
 	
@@ -207,7 +222,8 @@ public class RCCarLoversPortal {
 		
 		feedbackListOutput += "\n\n1. Add feedback";
 		feedbackListOutput += "\n2. Remove feedback";
-		feedbackListOutput += "\n3. View feedback\n";
+		feedbackListOutput += "\n3. View feedback";
+		feedbackListOutput += "\n4. Back\n";
 		
 		return feedbackListOutput;
 	}

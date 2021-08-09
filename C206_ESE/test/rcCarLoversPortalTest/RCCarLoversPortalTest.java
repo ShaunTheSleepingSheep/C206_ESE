@@ -151,7 +151,8 @@ public class RCCarLoversPortalTest {
 		String expected = "\nNothing to display";
 		expected += "\n\n1. Add feedback";
 		expected += "\n2. Remove feedback";
-		expected += "\n3. View feedback\n";
+		expected += "\n3. View feedback";
+		expected += "\n4. Back\n";
 		
 		String actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
@@ -167,7 +168,8 @@ public class RCCarLoversPortalTest {
 		expected += String.format("\n%-5d %s", 2, fb2.getName());
 		expected += "\n\n1. Add feedback";
 		expected += "\n2. Remove feedback";
-		expected += "\n3. View feedback\n";
+		expected += "\n3. View feedback";
+		expected += "\n4. Back\n";
 		
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
