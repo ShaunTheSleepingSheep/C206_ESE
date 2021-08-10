@@ -8,6 +8,9 @@ public class RCCarLoversPortal {
 
 	private static ArrayList<Feedback> feedbackList = new ArrayList<Feedback>();
 	private static ArrayList<Buyer> buyerList = new ArrayList<Buyer>();
+
+	private static final int MAX_MAIN_MENU_OPTION = 5;
+	private static final int MAX_SUB_MENU_OPTION = 4;
 	
 	public static void main(String[] args) {
 		testData();
@@ -19,7 +22,7 @@ public class RCCarLoversPortal {
 		// TODO: Complete main menu
 		int option = 0;
 		
-		while (option != 5) {
+		while (option != MAX_MAIN_MENU_OPTION) {
 			Helper.line(40, "-");
 			System.out.println("RC CAR LOVERS PORTAL");
 			Helper.line(40, "-");
@@ -48,7 +51,7 @@ public class RCCarLoversPortal {
 			else if (option == 4) {
 				int optionFeedback = 0;
 				
-				while (optionFeedback != 4) {
+				while (optionFeedback != MAX_SUB_MENU_OPTION) {
 					System.out.println(RCCarLoversPortal.feedbackMenu(feedbackList));
 					optionFeedback = Helper.readInt("Enter an option > ");
 					
