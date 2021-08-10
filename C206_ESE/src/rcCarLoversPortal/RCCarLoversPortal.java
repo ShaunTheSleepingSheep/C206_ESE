@@ -261,11 +261,35 @@ public class RCCarLoversPortal {
     }
 
     public static boolean addCar(ArrayList<RCCar> RCList, RCCar rc) {
-        return true;
+    	if (rc.getAssetID() != "" || rc.getAssetName() != "") {
+    		RCList.add(rc);
+			return true;
+		}
+		
+		else {
+			return false;
+		}
     }
 
     public static boolean removeCar(ArrayList<RCCar> RCList, RCCar rc) {
-        return false;
+    	boolean isInsideList = false;
+		
+		for (RCCar i : RCList) {
+			
+			if (i.equals(rc)) {
+				isInsideList = true;
+				RCList.remove(i);
+				break;
+			}
+		}
+		if(isInsideList != true)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
     }
 
     public static String viewCar(RCCar rc) {
