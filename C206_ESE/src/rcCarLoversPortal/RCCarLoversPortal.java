@@ -20,6 +20,9 @@ public class RCCarLoversPortal {
 		int option = 0;
 		
 		while (option != 5) {
+			Helper.line(40, "-");
+			System.out.println("RC CAR LOVERS PORTAL");
+			Helper.line(40, "-");
 			System.out.println("1. RC Cars");
 			System.out.println("2. Buyers");
 			System.out.println("3. Appointments");
@@ -27,9 +30,22 @@ public class RCCarLoversPortal {
 			System.out.println("5. Quit");
 			
 			option = Helper.readInt("Enter an option > ");
-		
+
+			// RC Cars sub-menu
+			if (option == 1) {
+				System.out.println("\nComing soon\n");
+			}
+			
+			else if (option == 2) {
+				System.out.println("\nComing soon\n");
+			}
+			
+			else if (option == 3) {
+				System.out.println("\nComing soon\n");
+			}
+			
 			// Feedback sub-menu
-			if (option == 4) {
+			else if (option == 4) {
 				int optionFeedback = 0;
 				
 				while (optionFeedback != 4) {
@@ -123,6 +139,10 @@ public class RCCarLoversPortal {
 						break;
 					}
 				}
+			}
+			
+			else if (option == 5) {
+				System.out.println("\nExiting application...");
 			}
 		}
 	}
