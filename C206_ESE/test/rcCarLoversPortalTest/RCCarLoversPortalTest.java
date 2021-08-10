@@ -128,7 +128,7 @@ public class RCCarLoversPortalTest {
 		expected += fb1.getPhoneNo() + "\n\n";
 		expected += "FEEDBACK\n";
 		expected += "--------\n";
-		expected += fb1.getDescription() + "\n";
+		expected += fb1.getDescription();
 
 		assertEquals("Check if the feedback is displayed properly", expected, actual);
 
@@ -148,7 +148,10 @@ public class RCCarLoversPortalTest {
 		assertNotNull("Check if there is a valid ArrayList to add to", feedbackList);
 
 		// check if list is empty, a relevant message will be displayed
-		String expected = "\nNothing to display";
+		String expected = "\n----------------------------------------";
+		expected += "\nFEEDBACK";
+		expected += "\n----------------------------------------";
+		expected += "\nNothing to display";
 		expected += "\n\n1. Add feedback";
 		expected += "\n2. Remove feedback";
 		expected += "\n3. View feedback";
@@ -162,7 +165,10 @@ public class RCCarLoversPortalTest {
 		feedbackList.add(fb1);
 		feedbackList.add(fb2);
 
-		expected = String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
+		expected = "\n----------------------------------------";
+		expected += "\nFEEDBACK";
+		expected += "\n----------------------------------------";
+		expected += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
 		expected += String.format("\n%-5s %s", "--", "---------------");
 		expected += String.format("\n%-5d %s", 1, fb1.getName());
 		expected += String.format("\n%-5d %s", 2, fb2.getName());

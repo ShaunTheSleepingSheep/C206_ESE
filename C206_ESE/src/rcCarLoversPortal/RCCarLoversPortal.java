@@ -151,7 +151,9 @@ public class RCCarLoversPortal {
 	// TODO: Delete when Aqil completes his modules.
 	private static void testData() {
 		Buyer b1 = new Buyer("Johnny Guitar", 98765432);
+		Buyer b2 = new Buyer("Johnny Silverhand", 87654321);
 		buyerList.add(b1);
+		buyerList.add(b2);
 	}
 
 	//==============================<Feedback>==============================//
@@ -211,7 +213,7 @@ public class RCCarLoversPortal {
 			feedback += fb.getPhoneNo() + "\n\n";
 			feedback += "FEEDBACK\n";
 			feedback += "--------\n";
-			feedback += fb.getDescription() + "\n";
+			feedback += fb.getDescription();
 		}
 		
 		return feedback;
@@ -220,6 +222,10 @@ public class RCCarLoversPortal {
 	public static String feedbackMenu(ArrayList<Feedback> feedbackList) {
 		String feedbackListOutput = "";
 		int numberOfIterations = 0;
+	
+		feedbackListOutput += "\n----------------------------------------";
+		feedbackListOutput += "\nFEEDBACK";
+		feedbackListOutput += "\n----------------------------------------";
 		
 		if (!feedbackList.isEmpty()) {
 			
@@ -237,7 +243,7 @@ public class RCCarLoversPortal {
 		}
 		
 		else {
-			feedbackListOutput = "\nNothing to display";
+			feedbackListOutput += "\nNothing to display";
 		}
 		
 		feedbackListOutput += "\n\n1. Add feedback";
