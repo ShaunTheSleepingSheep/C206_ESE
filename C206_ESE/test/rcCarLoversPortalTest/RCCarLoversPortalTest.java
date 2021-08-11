@@ -273,13 +273,13 @@ public class RCCarLoversPortalTest {
 	}
 
 	@Test
-	public void CarMenuTest() {
+	public void CarListTest() { ca
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
 		// check if list is empty, a relevant messsage will be displayed
 		String expected = "Nothing to display";
-		String actual = RCCarLoversPortal.CarListingMenu(RCList);
+		String actual = RCCarLoversPortal.CarList(RCList);
 
 		assertEquals("Check if Car list is empty, a relevant message will be displayed", expected, actual);
 
@@ -292,7 +292,7 @@ public class RCCarLoversPortalTest {
 		expected += String.format("\n%-5s %-20s %-5s %-20s %-20s", "--", "---------", "----");
 		expected += String.format("\n%-5s %-20s %-5d %-20s %-20s", 1, rc1.getAssetID(), rc1.getAssetName(), rc1.getSpeed(),rc1.getDriveTrain(),rc1.getBody());
 		expected += String.format("\n%-5s %-20s %-5d %-20s %-20s", 2, rc2.getAssetID(), rc2.getAssetName(), rc2.getSpeed(),rc2.getDriveTrain(),rc2.getBody());
-		actual = RCCarLoversPortal.CarListingMenu(RCList);
+		actual = RCCarLoversPortal.CarList(RCList);
 
 		assertEquals("Check if all Cars in the RCCar list is displayed", expected, actual);
 	}
