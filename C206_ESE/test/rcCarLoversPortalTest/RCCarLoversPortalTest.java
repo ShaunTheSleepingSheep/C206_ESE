@@ -190,14 +190,13 @@ public class RCCarLoversPortalTest {
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
 		// check if Car can be added
-		RCList.add(rc1);
+		RCCarLoversPortal.addCar(RCList, rc1);
 
 		assertEquals("Check that RCList's size is 1", 1, RCList.size());
 		assertSame("Check the correct Feedback is added", rc1, RCList.get(0));
 
 		// check if a second Car can be added
-		RCList.add(rc2);
-
+		RCCarLoversPortal.addCar(RCList, rc2);
 		assertEquals("Check that RCList's size is 2", 2, RCList.size());
 		assertSame("Check the correct Control Car is added", rc2, RCList.get(1));
 
@@ -219,12 +218,12 @@ public class RCCarLoversPortalTest {
 		assertFalse("Check if Car which does not exist cannot be removed", isRemoved);
 
 		// check if 2nd Car can be removed
-		RCList.remove(rc2);
+		RCCarLoversPortal.removeCar(RCList, rc2);
 
 		assertEquals("Check that RCList's size is 1", 1, RCList.size());
 
 		// check if the last Car can be removed
-		RCList.remove(rc1);
+		RCCarLoversPortal.removeCar(RCList, rc1);
 
 		assertEquals("Check that RCList's size is 0", 0, RCList.size());
 
@@ -285,8 +284,8 @@ public class RCCarLoversPortalTest {
 		assertEquals("Check if Car list is empty, a relevant message will be displayed", expected, actual);
 
 		// check if list is displayed properly
-		RCList.add(rc1);
-		RCList.add(rc2);
+		RCCarLoversPortal.addCar(RCList, rc1);
+		RCCarLoversPortal.addCar(RCList, rc2);
 
 		//public RCCar(String assetID, String assetName, int speed, String driveTrain, String body) {
 		expected += String.format("%-5s %-20s %-5d %-20s %-20s", "ASSET ID", "ASSET NAME", "SPEED", "DRIVE TRAIN", "BODY");
