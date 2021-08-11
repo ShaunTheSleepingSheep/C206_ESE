@@ -297,6 +297,24 @@ public class RCCarLoversPortal {
 
     public static String viewCar(RCCar rc) {
         String ControlCar = "";
+        
+        if (rc != null) {
+        	ControlCar += "\nAsset ID\n";
+        	ControlCar += "------\n";
+        	ControlCar += rc.getAssetID() + "\n\n";
+        	ControlCar += "Asset Name\n";
+        	ControlCar += "------------\n";
+			ControlCar += rc.getAssetName() + "\n\n";
+			ControlCar += "Speed\n";
+			ControlCar += "--------\n";
+			ControlCar += rc.getSpeed();
+			ControlCar += "Drive Train\n";
+			ControlCar += "--------\n";
+			ControlCar += rc.getDriveTrain();
+			ControlCar += "Body\n";
+			ControlCar += "--------\n";
+			ControlCar += rc.getBody();
+		}
         return ControlCar;
     }
 
