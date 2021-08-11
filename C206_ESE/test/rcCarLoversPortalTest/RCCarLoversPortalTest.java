@@ -180,6 +180,24 @@ public class RCCarLoversPortalTest {
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
 		assertEquals("Check if all feedback in the feedback list is displayed", expected, actual);
+		
+		// check if first feedback is removed, the second feedback in the list does not retain its old ID
+		feedbackList.remove(fb1);
+		
+		expected = "\n----------------------------------------";
+		expected += "\nFEEDBACK";
+		expected += "\n----------------------------------------";
+		expected += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
+		expected += String.format("\n%-5s %s", "--", "---------------");
+		expected += String.format("\n%-5d %s", 2, fb2.getName());
+		expected += "\n\n1. Add feedback";
+		expected += "\n2. Remove feedback";
+		expected += "\n3. View feedback";
+		expected += "\n4. Back\n";
+	
+		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
+		
+		assertNotEquals("Check if first feedback is removed from the feedback list, the second feedback does not retain its old ID", expected, actual);
 	}
 
 	// YuYang
