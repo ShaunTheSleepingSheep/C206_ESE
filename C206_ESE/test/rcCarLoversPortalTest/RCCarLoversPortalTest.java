@@ -273,7 +273,7 @@ public class RCCarLoversPortalTest {
 	}
 
 	@Test
-	public void CarListTest() { ca
+	public void CarListTest() {
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
