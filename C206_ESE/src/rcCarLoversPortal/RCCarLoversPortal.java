@@ -326,6 +326,11 @@ public class RCCarLoversPortal {
 
 		return feedbackListOutput;
 	}
+	
+	public static boolean updateFeedbackStatus(Feedback fb, String status) {
+		
+		return false;
+	}
 
 	// YuYang
 	// ==============================<RC Cars>==============================//

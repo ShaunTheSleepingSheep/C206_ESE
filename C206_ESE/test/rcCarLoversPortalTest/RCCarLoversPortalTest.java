@@ -198,6 +198,31 @@ public class RCCarLoversPortalTest {
 		
 		assertNotEquals("Check if first feedback is removed from the feedback list, the second feedback does not retain its old ID", expected, actual);
 	}
+	
+	@Test
+	public void updateFeedbackStatusTest() {
+		// check if list exists
+		assertNotNull("Check if there is a valid ArrayList to add to", feedbackList);
+		
+		// check if status of feedback can be updated and that the change is reflected in the feedback list
+		feedbackList.add(fb1);
+		boolean isChanged = RCCarLoversPortal.updateFeedbackStatus(fb1, "SOLVED");
+		
+		assertTrue("Check if the status of feedback can be updated", isChanged);
+		assertEquals("Check if the feedback's status is correct", "SOLVED", feedbackList.get(0).getStatus());
+		
+		// check if feedback's current status is PENDING and the updated status is also PENDING, no updates will be performed
+		feedbackList.get(0).setStatus("PENDING");
+		isChanged = RCCarLoversPortal.updateFeedbackStatus(feedbackList.get(0), "PEDNING");
+		
+		assertFalse("Check if the status of feedback is not updated", isChanged);
+		
+		// check if feedback's current status is SOLVED and the updated status is also SOLVED, no updates will be performed
+		feedbackList.get(0).setStatus("SOLVED");
+		isChanged = RCCarLoversPortal.updateFeedbackStatus(feedbackList.get(0), "SOLVED");
+		
+		assertFalse("Check if the status of feedback is not updated", isChanged);	
+	}
 
 	// YuYang
 	// ==============================<RC Cars>==============================//
