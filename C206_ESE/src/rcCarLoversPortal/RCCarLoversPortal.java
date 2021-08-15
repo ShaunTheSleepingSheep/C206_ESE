@@ -129,7 +129,7 @@ public class RCCarLoversPortal {
 			else if (option == 4) {
 				int optionFeedback = 0;
 
-				while (optionFeedback != MAX_SUB_MENU_OPTION) {
+				while (optionFeedback != 5) {
 					System.out.println(RCCarLoversPortal.feedbackMenu(feedbackList));
 					optionFeedback = Helper.readInt("Enter an option > ");
 
@@ -210,6 +210,53 @@ public class RCCarLoversPortal {
 						break;
 
 					case 4:
+						Feedback feedbackToUpdate = null;
+						String status = "";
+						
+						feedbackID = Helper.readInt("Feedback ID > ");
+						feedbackPosInList = feedbackID - 1;
+						
+						if (feedbackList.size() < feedbackID) {
+							System.out.println("\nFeedback does not exist");
+						}
+						
+						else {
+							feedbackToUpdate = feedbackList.get(feedbackPosInList);
+							
+							System.out.println("\n1. PENDING");
+							System.out.println("2. SOLVED");
+							int statusSelection = Helper.readInt("Select a status > ");
+							
+							switch (statusSelection) {
+							
+							case 1:
+								status = "PENDING";
+								
+								break;
+								
+							case 2:
+								status = "SOLVED";
+								
+								break;
+								
+							default:
+								System.out.println("\nInvalid option");
+								
+								break;
+							}
+							
+							if (!feedbackToUpdate.getStatus().equals(status) && !status.isBlank()) {
+								RCCarLoversPortal.updateFeedbackStatus(feedbackToUpdate, status);
+								
+								System.out.println("\nFeedback form successfully updated");
+							}
+							
+							else if (!status.isBlank()) {
+								System.out.println("\nFeedback form already has the " + status + " status");
+							}
+						}
+						
+					case 5:
 						System.out.println("");
 
 						break;
