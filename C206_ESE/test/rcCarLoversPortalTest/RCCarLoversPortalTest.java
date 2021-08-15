@@ -213,7 +213,7 @@ public class RCCarLoversPortalTest {
 		
 		// check if feedback's current status is PENDING and the updated status is also PENDING, no updates will be performed
 		feedbackList.get(0).setStatus("PENDING");
-		isChanged = RCCarLoversPortal.updateFeedbackStatus(feedbackList.get(0), "PEDNING");
+		isChanged = RCCarLoversPortal.updateFeedbackStatus(feedbackList.get(0), "PENDING");
 		
 		assertFalse("Check if the status of feedback is not updated", isChanged);
 		

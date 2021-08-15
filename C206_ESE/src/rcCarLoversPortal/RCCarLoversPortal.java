@@ -328,8 +328,16 @@ public class RCCarLoversPortal {
 	}
 	
 	public static boolean updateFeedbackStatus(Feedback fb, String status) {
+	
+		if (!fb.getStatus().equals(status)) {
+			fb.setStatus(status);
+			
+			return true;
+		}
 		
-		return false;
+		else {
+			return false;
+		}
 	}
 
 	// YuYang
