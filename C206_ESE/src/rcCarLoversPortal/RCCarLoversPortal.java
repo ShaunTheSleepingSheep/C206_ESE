@@ -136,6 +136,8 @@ public class RCCarLoversPortal {
 					switch (optionFeedback) {
 
 					case 1:
+						menuTitle("ADD FEEDBACK");
+						
 						int buyerID = Helper.readInt("Buyer ID > ");
 						String feedback = Helper.readString("Feedback > ");
 
@@ -163,6 +165,8 @@ public class RCCarLoversPortal {
 						break;
 
 					case 2:
+						menuTitle("REMOVE FEEDBACK");
+						
 						Date dateNow = new Date();
 						Feedback feedbackToDelete = null;
 
@@ -192,6 +196,8 @@ public class RCCarLoversPortal {
 						break;
 
 					case 3:
+						menuTitle("VIEW FEEDBACK");
+						
 						Feedback feedbackToView = null;
 
 						feedbackID = Helper.readInt("Feedback ID > ");
@@ -210,6 +216,8 @@ public class RCCarLoversPortal {
 						break;
 
 					case 4:
+						menuTitle("UPDATE FEEDBACK");
+						
 						Feedback feedbackToUpdate = null;
 						String status = "";
 						
@@ -217,7 +225,7 @@ public class RCCarLoversPortal {
 						feedbackPosInList = feedbackID - 1;
 						
 						if (feedbackList.size() < feedbackID) {
-							System.out.println("\nFeedback does not exist");
+							System.out.print("\nFeedback does not exist");
 						}
 						
 						else {
@@ -225,7 +233,7 @@ public class RCCarLoversPortal {
 							
 							System.out.println("\n1. PENDING");
 							System.out.println("2. SOLVED");
-							int statusSelection = Helper.readInt("Select a status > ");
+							int statusSelection = Helper.readInt("\nSelect a status > ");
 							
 							switch (statusSelection) {
 							
@@ -240,7 +248,7 @@ public class RCCarLoversPortal {
 								break;
 								
 							default:
-								System.out.println("\nInvalid option");
+								System.out.print("\nInvalid option");
 								
 								break;
 							}
@@ -248,11 +256,11 @@ public class RCCarLoversPortal {
 							if (!feedbackToUpdate.getStatus().equals(status) && !status.isBlank()) {
 								RCCarLoversPortal.updateFeedbackStatus(feedbackToUpdate, status);
 								
-								System.out.println("\nFeedback form successfully updated");
+								System.out.print("\nFeedback form successfully updated");
 							}
 							
 							else if (!status.isBlank()) {
-								System.out.println("\nFeedback form already has the " + status + " status");
+								System.out.print("\nFeedback form already has the " + status + " status");
 							}
 						}
 						
@@ -282,6 +290,14 @@ public class RCCarLoversPortal {
 		Buyer b2 = new Buyer("Johnny Silverhand", 87654321);
 		buyerList.add(b1);
 		buyerList.add(b2);
+	}
+	
+	//===============================<General Methods>===============================//
+	private void menuTitle(String title) {
+		System.out.println();
+		Helper.line(40, "-");
+		System.out.println(title);
+		Helper.line(40, "-");
 	}
 
 	// ==============================<Feedback>==============================//
