@@ -206,7 +206,7 @@ public class RCCarLoversPortalTest {
 		
 		// check if status of feedback can be updated and that the change is reflected in the feedback list
 		feedbackList.add(fb1);
-		boolean isChanged = RCCarLoversPortal.updateFeedbackStatus(fb1, "SOLVED");
+		boolean isChanged = RCCarLoversPortal.updateFeedbackStatus(feedbackList.get(0), "SOLVED");
 		
 		assertTrue("Check if the status of feedback can be updated", isChanged);
 		assertEquals("Check if the feedback's status is correct", "SOLVED", feedbackList.get(0).getStatus());
