@@ -58,6 +58,13 @@ public class RCCarLoversPortalTest {
 
 		after2Days23Hr59Min = add2Days23Hr59Min.getTime();
 		after3Days = add3Days.getTime();
+		
+		//RC Car test data
+		rc1 = new RCCar("343122","Monster Truck",50, "Two-wheel Drive","This RC Car contains x");
+		rc2 = new RCCar("123113","Roller",70,"Four-wheel Drive","This RC Car contains y");
+		rc3 = new RCCar("","",5,"","");
+				
+		RCList = new ArrayList<RCCar>();
 	}
 
 	// ==============================<Feedback>==============================//
