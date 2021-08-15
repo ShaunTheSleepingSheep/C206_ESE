@@ -411,7 +411,6 @@ public class RCCarLoversPortalTest {
 		System.out.println(RCCarLoversPortal.SearchCar(RCList, input));
 		assertEquals("check if all cars are displayed with no search input ", expected, actual);
 	}
-	
 	@After
 	public void tearDown() throws Exception {
 		// Feedback test data
