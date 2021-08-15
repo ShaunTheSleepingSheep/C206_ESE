@@ -1,5 +1,6 @@
 package rcCarLoversPortal;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -223,8 +224,7 @@ public class RCCarLoversPortal {
 		}
 	}
 
-	// ==============================<Temp Test
-	// Data>==============================//
+	// ==============================<Temp Test Data>==============================//
 	// TODO: Delete when Aqil completes his modules.
 	private static void testData() {
 		Buyer b1 = new Buyer("Johnny Guitar", 98765432);
@@ -280,16 +280,12 @@ public class RCCarLoversPortal {
 
 	public static String viewFeedback(Feedback fb) {
 		String feedback = "";
-
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
 		if (fb != null) {
-			feedback += "\nAUTHOR\n";
-			feedback += "------\n";
-			feedback += fb.getName() + "\n\n";
-			feedback += "PHONE NUMBER\n";
-			feedback += "------------\n";
-			feedback += fb.getPhoneNo() + "\n\n";
-			feedback += "FEEDBACK\n";
-			feedback += "--------\n";
+			feedback += String.format("\n%-22s %-15s %s\n", "DATE & TIME CREATED", "PHONE NUMBER", "AUTHOR");
+			feedback += String.format("%-22s %-15s %s\n", "-------------------", "------------", "------");
+			feedback += String.format("%-22s %-15s %s\n\n", formatDate.format(fb.getDateCreated()), fb.getPhoneNo(), fb.getName());
 			feedback += fb.getDescription();
 		}
 
@@ -301,7 +297,7 @@ public class RCCarLoversPortal {
 		int numberOfIterations = 0;
 
 		feedbackListOutput += "\n----------------------------------------";
-		feedbackListOutput += "\nFEEDBACK";
+		feedbackListOutput += "\nFEEDBACK FORMS";
 		feedbackListOutput += "\n----------------------------------------";
 
 		if (!feedbackList.isEmpty()) {
@@ -323,9 +319,9 @@ public class RCCarLoversPortal {
 			feedbackListOutput += "\nNothing to display";
 		}
 
-		feedbackListOutput += "\n\n1. Add feedback";
-		feedbackListOutput += "\n2. Remove feedback";
-		feedbackListOutput += "\n3. View feedback";
+		feedbackListOutput += "\n\n1. Add feedback form";
+		feedbackListOutput += "\n2. Remove feedback form";
+		feedbackListOutput += "\n3. View feedback form";
 		feedbackListOutput += "\n4. Back\n";
 
 		return feedbackListOutput;

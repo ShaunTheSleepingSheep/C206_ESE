@@ -2,6 +2,7 @@ package rcCarLoversPortalTest;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -119,15 +120,13 @@ public class RCCarLoversPortalTest {
 		feedbackList.add(fb1);
 		String expected = "";
 		String actual = RCCarLoversPortal.viewFeedback(feedbackList.get(0));
+		
+		// date format
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		expected += "\nAUTHOR\n";
-		expected += "------\n";
-		expected += fb1.getName() + "\n\n";
-		expected += "PHONE NUMBER\n";
-		expected += "------------\n";
-		expected += fb1.getPhoneNo() + "\n\n";
-		expected += "FEEDBACK\n";
-		expected += "--------\n";
+		expected += String.format("\n%-22s %-15s %s\n", "DATE & TIME CREATED", "PHONE NUMBER", "AUTHOR");
+		expected += String.format("%-22s %-15s %s\n", "-------------------", "------------", "------");
+		expected += String.format("%-22s %-15s %s\n\n", formatDate.format(fb1.getDateCreated()), fb1.getPhoneNo(), fb1.getName());
 		expected += fb1.getDescription();
 
 		assertEquals("Check if the feedback is displayed properly", expected, actual);
@@ -149,12 +148,12 @@ public class RCCarLoversPortalTest {
 
 		// check if list is empty, a relevant message will be displayed
 		String expected = "\n----------------------------------------";
-		expected += "\nFEEDBACK";
+		expected += "\nFEEDBACK FORMS";
 		expected += "\n----------------------------------------";
 		expected += "\nNothing to display";
-		expected += "\n\n1. Add feedback";
-		expected += "\n2. Remove feedback";
-		expected += "\n3. View feedback";
+		expected += "\n\n1. Add feedback form";
+		expected += "\n2. Remove feedback form";
+		expected += "\n3. View feedback form";
 		expected += "\n4. Back\n";
 		
 		String actual = RCCarLoversPortal.feedbackMenu(feedbackList);
@@ -166,15 +165,15 @@ public class RCCarLoversPortalTest {
 		feedbackList.add(fb2);
 
 		expected = "\n----------------------------------------";
-		expected += "\nFEEDBACK";
+		expected += "\nFEEDBACK FORMS";
 		expected += "\n----------------------------------------";
 		expected += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
 		expected += String.format("\n%-5s %s", "--", "---------------");
 		expected += String.format("\n%-5d %s", 1, fb1.getName());
 		expected += String.format("\n%-5d %s", 2, fb2.getName());
-		expected += "\n\n1. Add feedback";
-		expected += "\n2. Remove feedback";
-		expected += "\n3. View feedback";
+		expected += "\n\n1. Add feedback form";
+		expected += "\n2. Remove feedback form";
+		expected += "\n3. View feedback form";
 		expected += "\n4. Back\n";
 		
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
@@ -185,14 +184,14 @@ public class RCCarLoversPortalTest {
 		feedbackList.remove(fb1);
 		
 		expected = "\n----------------------------------------";
-		expected += "\nFEEDBACK";
+		expected += "\nFEEDBACK FORMS";
 		expected += "\n----------------------------------------";
 		expected += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
 		expected += String.format("\n%-5s %s", "--", "---------------");
 		expected += String.format("\n%-5d %s", 2, fb2.getName());
-		expected += "\n\n1. Add feedback";
-		expected += "\n2. Remove feedback";
-		expected += "\n3. View feedback";
+		expected += "\n\n1. Add feedback form";
+		expected += "\n2. Remove feedback form";
+		expected += "\n3. View feedback form";
 		expected += "\n4. Back\n";
 	
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
