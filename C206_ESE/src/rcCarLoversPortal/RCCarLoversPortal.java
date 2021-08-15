@@ -287,9 +287,9 @@ public class RCCarLoversPortal {
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		if (fb != null) {
-			feedback += String.format("\n%-22s %-15s %s\n", "DATE & TIME CREATED", "PHONE NUMBER", "AUTHOR");
-			feedback += String.format("%-22s %-15s %s\n", "-------------------", "------------", "------");
-			feedback += String.format("%-22s %-15s %s\n\n", formatDate.format(fb.getDateCreated()), fb.getPhoneNo(), fb.getName());
+			feedback += String.format("\n%-22s %-10s %-15s %s\n", "DATE & TIME CREATED", "STATUS", "PHONE NUMBER", "AUTHOR");
+			feedback += String.format("%-22s %-10s %-15s %s\n", "-------------------", "------", "------------", "------");
+			feedback += String.format("%-22s %-10s %-15s %s\n\n", formatDate.format(fb.getDateCreated()), fb.getStatus(), fb.getPhoneNo(), fb.getName());
 			feedback += fb.getDescription();
 		}
 
