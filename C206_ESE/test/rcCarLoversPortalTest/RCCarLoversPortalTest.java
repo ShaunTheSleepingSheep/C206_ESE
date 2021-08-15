@@ -124,9 +124,9 @@ public class RCCarLoversPortalTest {
 		// date format
 		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		expected += String.format("\n%-22s %-15s %s\n", "DATE & TIME CREATED", "PHONE NUMBER", "AUTHOR");
-		expected += String.format("%-22s %-15s %s\n", "-------------------", "------------", "------");
-		expected += String.format("%-22s %-15s %s\n\n", formatDate.format(fb1.getDateCreated()), fb1.getPhoneNo(), fb1.getName());
+		expected += String.format("\n%-22s %-10s %-15s %s\n", "DATE & TIME CREATED", "STATUS", "PHONE NUMBER", "AUTHOR");
+		expected += String.format("%-22s %-10s %-15s %s\n", "-------------------", "------", "------------", "------");
+		expected += String.format("%-22s %-10s %-15s %s\n\n", formatDate.format(fb1.getDateCreated()), fb1.getStatus(), fb1.getPhoneNo(), fb1.getName());
 		expected += fb1.getDescription();
 
 		assertEquals("Check if the feedback is displayed properly", expected, actual);
