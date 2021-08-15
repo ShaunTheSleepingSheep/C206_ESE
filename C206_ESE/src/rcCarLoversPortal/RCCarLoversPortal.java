@@ -45,32 +45,36 @@ public class RCCarLoversPortal {
 					optionRCCar = Helper.readInt("Enter an option > ");
 
 					switch (optionRCCar) {
-					
-					//view
+
+					// view
 					case 1:
-						String assetID = Helper.readString("Asset ID > ");
-						String assetName = Helper.readString("Asset Name > ");
-						
-						boolean foundCar = false;
-						for(RCCar i : RCList)
-						{
-							if (assetID == i.getAssetID() && assetName == i.getAssetName()) {
-								viewCar(i);
-								foundCar = true;
+						int optionSearch = 0;
+						while (optionRCCar != 3) {
+							System.out.println("\n1. Search");
+							System.out.println("2. View all");
+							System.out.println("3. Back");
+							optionSearch = Helper.readInt("Enter an option > ");
+							if (optionSearch == 1) {
+								String input = Helper.readString("Search > ");
+								System.out.println(SearchCar(RCList,input));
+							} else if (optionSearch == 2) {
+								System.out.println(CarList(RCList));
+							} else if(optionSearch == 3)
+							{
+								break;
+							}
+							else
+							{
+								System.out.println("\nInvalid Option\n");
 							}
 						}
-						if(foundCar != true)
-						{
-							System.out.println("\nRC Car does not exist");
-						}
 						break;
-					
 					//delete
 					case 2:
 
 						String assetID1 = Helper.readString("Asset ID > ");
 
-						boolean foundCar1 = false;
+						boolean foundCar = false;
 						for(RCCar i : RCList)
 						{
 							if (assetID1 == i.getAssetID()) {
@@ -78,7 +82,7 @@ public class RCCarLoversPortal {
 								foundCar = true;
 							}
 						}
-						if(foundCar1 != true)
+						if(foundCar != true)
 						{
 							System.out.println("\nRC Car does not exist");
 						}
@@ -343,13 +347,6 @@ public class RCCarLoversPortal {
 
 	// YuYang
 	// ==============================<RC Cars>==============================//
-	public static String CarInfo(RCCar rc) {
-		String CarOutput = String.format(
-				"Asset ID\n------\n%-10d\n\nAsset Name\n------------\n%-10s\n\nSpeed\n--------\n%-10d\nDrive Train\n--------\n%-10s\nBody\n--------\n%-10s\n",
-				rc.getAssetID(), rc.getAssetName(), rc.getSpeed(), rc.getDriveTrain(), rc.getBody());
-		return CarOutput;
-	}
-
 	public static boolean addCar(ArrayList<RCCar> RCList, RCCar rc) {
 		if (rc.getAssetID() != "" || rc.getAssetName() != "") {
 			RCList.add(rc);
@@ -381,7 +378,6 @@ public class RCCarLoversPortal {
 
 	public static String viewCar(RCCar rc) {
 		String ControlCar = "";
-
 		if (rc != null) {
 			ControlCar += "\nAsset ID\n";
 			ControlCar += "------\n";
@@ -391,61 +387,88 @@ public class RCCarLoversPortal {
 			ControlCar += rc.getAssetName() + "\n\n";
 			ControlCar += "Speed\n";
 			ControlCar += "--------\n";
-			ControlCar += rc.getSpeed();
+			ControlCar += rc.getSpeed() + "\n\n";
 			ControlCar += "Drive Train\n";
 			ControlCar += "--------\n";
-			ControlCar += rc.getDriveTrain();
+			ControlCar += rc.getDriveTrain() + "\n\n";
 			ControlCar += "Body\n";
 			ControlCar += "--------\n";
-			ControlCar += rc.getBody();
+			ControlCar += rc.getBody() + "\n\n";
 		}
 		return ControlCar;
 	}
 
 	public static String CarList(ArrayList<RCCar> RCList) {
-		String CarListOutput = String.format("%-5s %-20s %-5d %-20s %-20s", "ASSET ID", "ASSET NAME", "SPEED",
-				"DRIVE TRAIN", "BODY");
-		CarListOutput += String.format("\n%-5s %-20s %-5s %-20s %-20s", "--", "---------", "----");
-		for (int i = 0; i < RCList.size(); i++) {
-			CarListOutput += String.format("\n%-5s %-20s %-5d %-20s %-20s", 1, RCList.get(i).getAssetID(),
-					RCList.get(i).getAssetName(), RCList.get(i).getSpeed(), RCList.get(i).getDriveTrain(),
-					RCList.get(i).getBody());
+		String CarListOutput = "";
+		if (!RCList.isEmpty()) {
+			CarListOutput = String.format("%-5s %-20s %-5d %-20s %-20s", "ASSET ID", "ASSET NAME", "SPEED",
+					"DRIVE TRAIN", "BODY");
+			CarListOutput += String.format("\n%-5s %-20s %-5s %-20s %-20s", "--", "---------", "----");
+			for (int i = 0; i < RCList.size(); i++) {
+				CarListOutput += String.format("\n%-5s %-20s %-5d %-20s %-20s", 1, RCList.get(i).getAssetID(),
+						RCList.get(i).getAssetName(), RCList.get(i).getSpeed(), RCList.get(i).getDriveTrain(),
+						RCList.get(i).getBody());
+			}
 		}
-
+		else
+		{
+			CarListOutput = "\nNothing to display";
+		}
 		return CarListOutput;
 	}
+
 	public static String RCCarMenu(ArrayList<RCCar> RCList) {
 		String RCMenuOutput = "";
-		int numberOfIterations = 0;
-
+		int numberOfRCItems = 0;
 		RCMenuOutput += "\n----------------------------------------";
-		RCMenuOutput += "\nFEEDBACK";
+		RCMenuOutput += "\nRC Car";
 		RCMenuOutput += "\n----------------------------------------";
-
 		if (!RCList.isEmpty()) {
 
+			RCMenuOutput += String.format("\n%-6s%-15s%s", "NO.", "ASSET ID", "ASSET NAME");
+			RCMenuOutput += String.format("\n%-6s%-15s%s", "---", "----------", "---------------");
 			for (RCCar i : RCList) {
-
-				if (numberOfIterations < 1) {
-					RCMenuOutput += String.format("\n%-5s %s", "ID", "ASSET ID");
-					RCMenuOutput += String.format("\n%-5s %s", "--", "---------------");
-
-					numberOfIterations++;
-				}
-
-				RCMenuOutput += String.format("\n%-5d %-10s %s", numberOfIterations++, i.getAssetID(),i.getAssetName());
+				numberOfRCItems += 1;
+				RCMenuOutput += String.format("\n%-6s%-15s%s", numberOfRCItems, i.getAssetID(), i.getAssetName());
 			}
 		}
 
 		else {
 			RCMenuOutput += "\nNothing to display";
 		}
-
 		RCMenuOutput += "\n\n1. View RC Car";
 		RCMenuOutput += "\n2. Remove RC Car";
 		RCMenuOutput += "\n3. Add RC Car";
 		RCMenuOutput += "\n4. Back\n";
-
 		return RCMenuOutput;
+	}
+
+	public static String SearchCar(ArrayList<RCCar> RCList, String input) {
+		String RCSearchOutput = "";
+		int numberOfRCItems = 0;
+		boolean found = false;
+		RCSearchOutput += "\n----------------------------------------";
+		RCSearchOutput += "\nRC Car";
+		RCSearchOutput += "\n----------------------------------------";
+		if (!RCList.isEmpty()) {
+
+			RCSearchOutput += String.format("\n%-6s%-15s%s", "NO.", "ASSET ID", "ASSET NAME");
+			RCSearchOutput += String.format("\n%-6s%-15s%s", "---", "----------", "---------------");
+			for (RCCar i : RCList) {
+				if (i.getAssetName().contains(input)) {
+					numberOfRCItems += 1;
+					RCSearchOutput += String.format("\n%-6s%-15s%s", numberOfRCItems, i.getAssetID(), i.getAssetName());
+					found = true;
+				}
+			}
+			if (found != true) {
+				RCSearchOutput += "\nNo relevant RC Car found";
+			}
+		}
+
+		else {
+			RCSearchOutput += "\nNothing to display";
+		}
+		return RCSearchOutput;
 	}
 }

@@ -231,17 +231,18 @@ public class RCCarLoversPortalTest {
 	// ==============================<RC Cars>==============================//
 	@Test
 	public void addCarTest() {
+		
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
 		// check if Car can be added
-		RCCarLoversPortal.addCar(RCList, rc1);
+		RCList.add(rc1);
 
 		assertEquals("Check that RCList's size is 1", 1, RCList.size());
 		assertSame("Check the correct Feedback is added", rc1, RCList.get(0));
 
 		// check if a second Car can be added
-		RCCarLoversPortal.addCar(RCList, rc2);
+		RCList.add(rc2);
 		assertEquals("Check that RCList's size is 2", 2, RCList.size());
 		assertSame("Check the correct Control Car is added", rc2, RCList.get(1));
 
@@ -254,6 +255,9 @@ public class RCCarLoversPortalTest {
 
 	@Test
 	public void removeCarTest() {
+		RCList.add(rc1);
+		RCList.add(rc2);
+		
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
@@ -263,19 +267,19 @@ public class RCCarLoversPortalTest {
 		assertFalse("Check if Car which does not exist cannot be removed", isRemoved);
 
 		// check if 2nd Car can be removed
-		RCCarLoversPortal.removeCar(RCList, rc2);
+		RCList.remove(rc2);
 
 		assertEquals("Check that RCList's size is 1", 1, RCList.size());
 
 		// check if the last Car can be removed
-		RCCarLoversPortal.removeCar(RCList, rc1);
+		RCList.remove(rc1);
 
 		assertEquals("Check that RCList's size is 0", 0, RCList.size());
 
 		// check if the last Car that was removed cannot be removed again
-		boolean isRemoved1 = RCCarLoversPortal.removeCar(RCList, rc1);
+		isRemoved = RCCarLoversPortal.removeCar(RCList, rc1);
 
-		assertFalse("Check if Car which was removed cannot be removed again", isRemoved1);
+		assertFalse("Check if Car which was removed cannot be removed again", isRemoved);
 
 	}
 
@@ -286,9 +290,9 @@ public class RCCarLoversPortalTest {
 
 		// check if car is displayed properly
 		String expected = "";
-		String actual = RCCarLoversPortal.CarInfo(rc1);
+		String actual = RCCarLoversPortal.viewCar(rc1);
 
-		expected += "Asset ID\n";
+		expected += "\nAsset ID\n";
 		expected += "------\n";
 		expected += rc1.getAssetID() + "\n\n";
 		expected += "Asset Name\n";
@@ -296,13 +300,13 @@ public class RCCarLoversPortalTest {
 		expected += rc1.getAssetName() + "\n\n";
 		expected += "Speed\n";
 		expected += "--------\n";
-		expected += rc1.getSpeed() + "\n";
+		expected += rc1.getSpeed() + "\n\n";
 		expected += "Drive Train\n";
 		expected += "--------\n";
-		expected += rc1.getDriveTrain() + "\n";
+		expected += rc1.getDriveTrain() + "\n\n";
 		expected += "Body\n";
 		expected += "--------\n";
-		expected += rc1.getBody() + "\n";
+		expected += rc1.getBody() + "\n\n";
 
 		assertEquals("Check if the car is displayed properly", expected, actual);
 
@@ -312,34 +316,100 @@ public class RCCarLoversPortalTest {
 		RCList.add(null);
 
 		expected = "";
-		actual = RCCarLoversPortal.CarInfo(RCList.get(0));
+		actual = RCCarLoversPortal.viewCar(RCList.get(0));
 
 		assertEquals("Check if car that no longer exists is not displayed", expected, actual);
 	}
 
 	@Test
-	public void CarListTest() {
+	public void CarMenuTest() {
 		// check if list exists
 		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
 		// check if list is empty, a relevant messsage will be displayed
-		String expected = "Nothing to display";
-		String actual = RCCarLoversPortal.CarList(RCList);
+		String expected = String.format("\n----------------------------------------");
+		expected += String.format("\nRC Car");
+		expected += String.format("\n----------------------------------------");
+		expected += "\nNothing to display";
+		expected += String.format("\n\n1. View RC Car");
+		expected += String.format("\n2. Remove RC Car");
+		expected += String.format("\n3. Add RC Car");
+		expected += String.format("\n4. Back\n");
+
+		String actual = RCCarLoversPortal.RCCarMenu(RCList);
 
 		assertEquals("Check if Car list is empty, a relevant message will be displayed", expected, actual);
 
-		// check if list is displayed properly
-		RCCarLoversPortal.addCar(RCList, rc1);
-		RCCarLoversPortal.addCar(RCList, rc2);
+		// Check if all Cars in the RCCar list is displayed along with the menu
+		RCList.add(rc1);
+		RCList.add(rc2);
+		expected = "";
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\nRC Car");
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\n%-6s%-15s%s","NO.","ASSET ID", "ASSET NAME");
+		expected += String.format("\n%-6s%-15s%s","---","----------", "---------------");
+		expected += String.format("\n%-6s%-15s%s",1, RCList.get(0).getAssetID(),RCList.get(0).getAssetName());
+		expected += String.format("\n%-6s%-15s%s",2, RCList.get(1).getAssetID(),RCList.get(1).getAssetName());
+		expected += String.format("\n\n1. View RC Car");
+		expected += String.format("\n2. Remove RC Car");
+		expected += String.format("\n3. Add RC Car");
+		expected += String.format("\n4. Back\n");
+		
+		actual = RCCarLoversPortal.RCCarMenu(RCList);
 
-		//public RCCar(String assetID, String assetName, int speed, String driveTrain, String body) {
-		expected += String.format("%-5s %-20s %-5d %-20s %-20s", "ASSET ID", "ASSET NAME", "SPEED", "DRIVE TRAIN", "BODY");
-		expected += String.format("\n%-5s %-20s %-5s %-20s %-20s", "--", "---------", "----");
-		expected += String.format("\n%-5s %-20s %-5d %-20s %-20s", 1, rc1.getAssetID(), rc1.getAssetName(), rc1.getSpeed(),rc1.getDriveTrain(),rc1.getBody());
-		expected += String.format("\n%-5s %-20s %-5d %-20s %-20s", 2, rc2.getAssetID(), rc2.getAssetName(), rc2.getSpeed(),rc2.getDriveTrain(),rc2.getBody());
-		actual = RCCarLoversPortal.CarList(RCList);
+		assertEquals("Check if all Cars in the RCCar list is displayed along with the menu", expected, actual);
+	}
+	@Test
+	public void CarSearchTest() {
+		RCList.add(rc1);
+		RCList.add(rc2);
+		
+		// check if list exists
+		assertNotNull("Check if there is a valid ArrayList to add to", RCList);
 
-		assertEquals("Check if all Cars in the RCCar list is displayed", expected, actual);
+		// check if search input displays the relevant car
+		String expected = String.format("\n----------------------------------------");
+		expected += String.format("\nRC Car");
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\n%-6s%-15s%s", "NO.", "ASSET ID", "ASSET NAME");
+		expected += String.format("\n%-6s%-15s%s", "---", "----------", "---------------");
+		expected += String.format("\n%-6s%-15s%s",1,rc1.getAssetID(),rc1.getAssetName());
+		
+		String input = "Monster Truck";
+		String actual = RCCarLoversPortal.SearchCar(RCList, input);
+
+		assertEquals("Check if Search input displays the relevant car", expected, actual);
+
+		// check if non-existing car is not displayed  
+		
+		expected = "";
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\nRC Car");
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\n%-6s%-15s%s","NO.","ASSET ID", "ASSET NAME");
+		expected += String.format("\n%-6s%-15s%s","---","----------", "---------------");
+		expected += String.format("\nNo relevant RC Car found");
+		
+		input = "Car";
+		actual = RCCarLoversPortal.SearchCar(RCList, input);
+		assertEquals("check if non-existing car is not displayed  ", expected, actual);
+		
+		//check that all cars are displayed with no search input
+	
+		expected = "";
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\nRC Car");
+		expected += String.format("\n----------------------------------------");
+		expected += String.format("\n%-6s%-15s%s","NO.","ASSET ID", "ASSET NAME");
+		expected += String.format("\n%-6s%-15s%s","---","----------", "---------------");
+		expected += String.format("\n%-6s%-15s%s",1, rc1.getAssetID(),rc1.getAssetName());
+		expected += String.format("\n%-6s%-15s%s",2, rc2.getAssetID(),rc2.getAssetName());
+		
+		input = "";
+		actual = RCCarLoversPortal.SearchCar(RCList, input);
+		System.out.println(RCCarLoversPortal.SearchCar(RCList, input));
+		assertEquals("check if all cars are displayed with no search input ", expected, actual);
 	}
 	
 	@After
