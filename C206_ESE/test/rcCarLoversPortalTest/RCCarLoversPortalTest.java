@@ -154,7 +154,8 @@ public class RCCarLoversPortalTest {
 		expected += "\n\n1. Add feedback form";
 		expected += "\n2. Remove feedback form";
 		expected += "\n3. View feedback form";
-		expected += "\n4. Back\n";
+		expected += "\n4. Update feedback form status";
+		expected += "\n5. Back\n";
 		
 		String actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
@@ -167,14 +168,15 @@ public class RCCarLoversPortalTest {
 		expected = "\n----------------------------------------";
 		expected += "\nFEEDBACK FORMS";
 		expected += "\n----------------------------------------";
-		expected += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
-		expected += String.format("\n%-5s %s", "--", "---------------");
-		expected += String.format("\n%-5d %s", 1, fb1.getName());
-		expected += String.format("\n%-5d %s", 2, fb2.getName());
+		expected += String.format("\n%-5s %-10s %s", "ID", "STATUS", "FEEDBACK AUTHOR");
+		expected += String.format("\n%-5s %-10s %s", "--", "------", "---------------");
+		expected += String.format("\n%-5d %-10s %s", 1, fb1.getStatus(), fb1.getName());
+		expected += String.format("\n%-5d %-10s %s", 2, fb2.getStatus(), fb2.getName());
 		expected += "\n\n1. Add feedback form";
 		expected += "\n2. Remove feedback form";
 		expected += "\n3. View feedback form";
-		expected += "\n4. Back\n";
+		expected += "\n4. Update feedback form status";
+		expected += "\n5. Back\n";
 		
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 
@@ -186,13 +188,14 @@ public class RCCarLoversPortalTest {
 		expected = "\n----------------------------------------";
 		expected += "\nFEEDBACK FORMS";
 		expected += "\n----------------------------------------";
-		expected += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
-		expected += String.format("\n%-5s %s", "--", "---------------");
-		expected += String.format("\n%-5d %s", 2, fb2.getName());
+		expected += String.format("\n%-5s %-10s %s", "ID", "STATUS", "FEEDBACK AUTHOR");
+		expected += String.format("\n%-5s %-10s %s", "--", "------", "---------------");
+		expected += String.format("\n%-5d %-10s %s", 1, fb1.getStatus(), fb1.getName());
 		expected += "\n\n1. Add feedback form";
 		expected += "\n2. Remove feedback form";
 		expected += "\n3. View feedback form";
-		expected += "\n4. Back\n";
+		expected += "\n4. Update feedback form status";
+		expected += "\n5. Back\n";
 	
 		actual = RCCarLoversPortal.feedbackMenu(feedbackList);
 		

@@ -305,13 +305,13 @@ public class RCCarLoversPortal {
 			for (Feedback i : feedbackList) {
 
 				if (numberOfIterations < 1) {
-					feedbackListOutput += String.format("\n%-5s %s", "ID", "FEEDBACK AUTHOR");
-					feedbackListOutput += String.format("\n%-5s %s", "--", "---------------");
-
+					feedbackListOutput += String.format("\n%-5s %-10s %s", "ID", "STATUS", "FEEDBACK AUTHOR");
+					feedbackListOutput += String.format("\n%-5s %-10s %s", "--", "------", "---------------");
+					
 					numberOfIterations++;
 				}
 
-				feedbackListOutput += String.format("\n%-5d %s", numberOfIterations++, i.getName());
+				feedbackListOutput += String.format("\n%-5d %-10s %s", numberOfIterations++, i.getStatus(), i.getName());
 			}
 		}
 
@@ -322,7 +322,8 @@ public class RCCarLoversPortal {
 		feedbackListOutput += "\n\n1. Add feedback form";
 		feedbackListOutput += "\n2. Remove feedback form";
 		feedbackListOutput += "\n3. View feedback form";
-		feedbackListOutput += "\n4. Back\n";
+		feedbackListOutput += "\n4. Update feedback form status";
+		feedbackListOutput += "\n5. Back\n";
 
 		return feedbackListOutput;
 	}
